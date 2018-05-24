@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<div>
+    <p>Angular App</p>
+    <p>Count: {{ count }}</p>
+    <p>
+        <a href="javascript:;" (click)="addCount()">Add Count</a>
+    </p>
+    <ul>
+        <li *ngFor="let movie of movies">
+            <h2>{{ movie.title }}</h2>
+            <img [src]="movie.images.large">
+        </li>
+    </ul>
+</div>

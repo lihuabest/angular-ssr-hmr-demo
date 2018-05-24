@@ -4,11 +4,15 @@
   "scripts": {
     "postinstall": "node fixHtmlLoader.js",
     "ng": "ng",
-    "start": "ng serve --hmr",
+    "start": "ng serve --hmr --proxy-config proxy.config.json",
     "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:ssr": "node dist/server",
+    "build:client-and-server-bundles": "ng build --prod && ng run angular-ssr-hmr-demo:server && npm run webpack:server",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
   "dependencies": {
@@ -22,9 +26,15 @@
     "@angular/material": "^6.1.0",
     "@angular/platform-browser": "^6.0.2",
     "@angular/platform-browser-dynamic": "^6.0.2",
+    "@angular/platform-server": "^6.0.3",
     "@angular/router": "^6.0.2",
+    "@nguniversal/common": "^6.0.0",
+    "@nguniversal/express-engine": "^6.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "core-js": "^2.5.4",
+    "http-proxy-middleware": "^0.18.0",
     "rxjs": "^6.0.0",
+    "ts-loader": "^4.3.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -49,6 +59,7 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "webpack-cli": "^2.1.4"
   }
 }

@@ -1,0 +1,9 @@
+{
+    "/v2/*": {
+        "target": "https://api.douban.com",
+        "secure": false,
+        "pathRewrite": {"^/v2" : "/v2"},
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
